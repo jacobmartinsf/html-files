@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Carl's ISP Calculator</title>
+<script type="text/javascript">
+
+function GenerateBill(){
+var checkedValue = null;
+var inputElements = document.getElementsByClassName('messageCheckbox');
+for(var i=0; inputElements[i]; ++i){
+if(inputElements[i].checked){
+checkedValue = inputElements[i].value;
+break;
+}
+}
+
+//Using document.getElementById to pull input 
+var jobValue = document.getElementById('hours').value;
+var checkedValue1 = null;
+var inputElements1 = document.getElementsByClassName('npo');
+
+for(var j=0; inputElements1[j]; ++j){
+if(inputElements1[j].checked){
+checkedValue1 = inputElements1[j].value;
+break;
+}
+else{
+   checkedValue1="off";
+   }
+}
+var bill=null;
+if(checkedValue=="A"){
+   if(jobValue>10){
+       bill=12.95+(parseInt(jobValue-10))*4;
+   }
+   else{
+       bill=12.95;
+   }
+}
+else if(checkedValue=="B"){
+   if(jobValue>20){
+   bill=14.95+(parseInt(jobValue-20))*2;
+   }
+   else{
+       bill=14.95;
+   }
+}
+else if(checkedValue=="C"){
+   if(jobValue>30){
+   bill=20+(parseInt(jobValue-30))*1;
+   }
+   else{
+       bill=20;
+   }
+}
+else if(checkedValue=="D"){
+   bill=35.95;
+}
+if(checkedValue1=="on"){
+   bill=bill*0.8;
+}
+document.getElementById('bill').value=bill;
+}
+
+function handleChange(input) {
+if (input.value < 0) input.value = 0;
+if (input.value >= 744) input.value = 744;
+}
+
+function handleClick(){
+document.getElementById("hours").disabled = true;
+}
+
+function handleText(){
+   document.getElementById("hours").disabled = false;
+}
+
+</script>
+</head>
+<body>
+<form >
+<input class="messageCheckbox" type="radio" name="package" value="A" onclick="handleText();"> Package A: 10 hours of access for $12.95 per month. Additional hours are $4.00 per hour.
+<br>
+
+<input class="messageCheckbox" type="radio" name="package" value="B" onclick="handleText();"> Package B: 20 hours of access for $14.95 per month. Additional hours are $2.00 per hour.
+<br>
+
+<input class="messageCheckbox" type="radio" name="package" value="C" onclick="handleText();"> Package C: 30 hours of access for $20 per month. Additional hours are $1.00 per hour.
+<br>
+
+<input class="messageCheckbox" type="radio" name="package" value="D" onclick="handleClick();"> Package D: Unlimited access for $35.95 per month.
+<br><br>
+
+Number of Hours Used: <input type="text" id="hours" onchange="handleChange(this);" ><br>
+<br>
+
+<input class="npo" type="checkbox" name="nonProfit" value="on"> Nonprofit organization
+<br><br>
+
+<input type="button" onclick="GenerateBill();" value="Calculate">
+<br><br>
+
+Monthly Billing: <input type="text" id="bill"><br>
+
+</form>
+</body>
+</html>

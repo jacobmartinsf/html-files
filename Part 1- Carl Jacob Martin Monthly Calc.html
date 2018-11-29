@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+  <title> Carl's Monthly Payment Calculator </title>
+</head>
+<body>
+<form name="loandata">
+  <p> Monthly Payment Calculator </p>
+ 
+ <form>
+<TD>1)</TD>
+<TD>Enter Loan:</TD>
+<TD><INPUT TYPE=text NAME=principal SIZE=12 onChange="calculate()"></TD>
+   
+   <p> Select rate:</p>
+    <select name="interest">
+      <option value=.04>4%</option>>
+      <option value=.045>4.5%</option>>
+      <option value=.05>5%</option>>
+      <option value=.055>5.5%</option>>
+      <option value=.06>6%</option>>
+    </select>
+
+  <p> Select Term:</p>
+    <input type="radio" name="years" value=10 />10 year<br>
+    <input type="radio" name="years" value=15 />15 year<br>
+    <input type="radio" name="years" value=30 />30 year<br>
+	
+
+   <p> Monthly Payment:</p>
+    <input type="text" name="payment"><br>
+
+   <p> </p>
+   <button type="button" onclick="calculate();">
+     COMPUTE PAYMENT
+   </button>     
+
+<SCRIPT LANGUAGE="JavaScript">
+function calculate()
+{
+var principal = document.loandata.principal.value;
+var interest = document.loandata.interest.value /12;
+var payments = document.loandata.years.value *12;
+var x = Math.pow(1 + interest, payments);
+var monthly = (principal * x * interest)/(x-1);
+if ((!isNaN(monthly)) && (monthly != Number.POSITIVE_INFINITY) && (monthly != Number.NEGATIVE_INFINITY) )
+{
+document.loandata.payment.value=("$" + monthly.toFixed(2));
+}
+else
+{
+document.loandata.payment.value="";
+}
+}
+</SCRIPT>
+</HTML>

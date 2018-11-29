@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="div1">
+<a href="https://www.youtube.com/watch?v=nSYLImISaG0">Carl's Cafe Music Vibes </a>
+<br>
+<a href="https://www.google.com">Got a question? Google it!</a>
+<br>
+<a href="https://www.reddit.com">Reddit</a>
+<br>
+<p>
+This is DIVISION 1
+</p>
+</div>
+<div class="div2">
+<img src="myimage.jpg">
+<div class="center">This is DIVISION 2</div>
+</div>
+<div class="div3">
+<div class="center">
+This is DIVISION 3
+</div>
+<head>
+  <title> Carl's Monthly Payment Calculator </title>
+</head>
+<body>
+<form name="loandata">
+ <form>
+<TD>1)</TD>
+<TD>Enter Loan:</TD>
+<TD><INPUT TYPE=text NAME=principal SIZE=12 onChange="calculate()"></TD>
+<p>
+    <select name="interest">
+      <option value=.04>4%</option>>
+      <option value=.045>4.5%</option>>
+      <option value=.05>5%</option>>
+      <option value=.055>5.5%</option>>
+      <option value=.06>6%</option>>
+    </select>
+</p>
+  <p> Select Term:</p>
+    <input type="radio" name="years" value=10 />10 year<br>
+    <input type="radio" name="years" value=15 />15 year<br>
+    <input type="radio" name="years" value=30 />30 year<br>
+   <p> Monthly Payment:</p>
+    <input type="text" name="payment"><br>
+   <p> </p>
+   <button type="button" onclick="calculate();">
+     COMPUTE PAYMENT
+   </button>     
+<SCRIPT LANGUAGE="JavaScript">
+function calculate()
+{
+var principal = document.loandata.principal.value;
+var interest = document.loandata.interest.value /12;
+var payments = document.loandata.years.value *12;
+var x = Math.pow(1 + interest, payments);
+var monthly = (principal * x * interest)/(x-1);
+if ((!isNaN(monthly)) && (monthly != Number.POSITIVE_INFINITY) && (monthly != Number.NEGATIVE_INFINITY) )
+{
+document.loandata.payment.value=("$" + monthly.toFixed(2));
+}
+else
+{
+document.loandata.payment.value="";
+}
+}
+</SCRIPT>
+</HTML>
+
+</div>
+<div class="div4">
+<div class="center">This is DIVISION 4</div>
+
+<body>
+
+<div id="content">
+
+<p>Straight Line Depreciation Table
+
+<p>
+
+<br>
+
+<br>
+
+<form name="depForm">
+
+Enter Property Value:
+
+<input type="text" name="pValue" value="" />
+
+<br>
+
+<br> Enter Property Life:
+
+<input type="text" name="pLife" value "" />
+
+<br>
+
+<br>
+
+<input type="button" value="Show Table" name="btnShowTable" onclick="showTable()" />
+
+</form>
+
+<br>
+
+<table id="depTable" border="1" width="400" cellspacing="1">
+
+<thead>
+
+<tr>
+
+<th>Year</th>
+
+<th>Value at BeginYr</th>
+
+<th>Dep During Yr</th>
+
+<th>Total to EndofYr</th>
+
+</tr>
+
+</thead>
+
+<body>
+
+</body>
+
+</table>
+
+</div>
+
+</body>
+
+<script>
+
+function showTable() {
+
+value = eval(document.depForm.pValue.value);
+
+life = eval(document.depForm.pLife.value);
+
+depreciation = value / life;
+
+var table = document.getElementById('depTable');
+
+var totalDepreciation = 0;
+
+for (var i = table.rows.length - 1; i > 0; i--) {
+
+table.deleteRow(i);
+
+}
+
+for (count = 1; count <= life; count++) {
+
+var rowCount = table.rows.length;
+
+var row = table.insertRow(rowCount);
+
+if (count % 2 == 0) {
+
+row.className = "evenColor";
+
+} else {
+
+row.className = "oddColor";
+
+}
+
+var cell0 = row.insertCell(0);
+
+cell0.innerHTML = count;
+
+var cell1 = row.insertCell(1);
+
+cell1.innerHTML = "$" + value.toFixed(2);
+
+var cell2 = row.insertCell(2);
+
+cell2.innerHTML = "$" + depreciation.toFixed(2);
+
+totalDepreciation += depreciation;
+
+var cell3 = row.insertCell(3);
+
+cell3.innerHTML = "$" + totalDepreciation.toFixed(2);
+
+value -= depreciation;
+
+}
+
+}
+
+</script>
+
+</body>
+</div>
+</body>
+</html>

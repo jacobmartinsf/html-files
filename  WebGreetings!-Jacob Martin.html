@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+
+<p id="greeting"></p>
+
+<p id="demo"></p>
+
+<script type="text/javascript">
+
+var d = new Date();
+
+document.getElementById("demo").innerHTML = d;
+
+var hours = d.getHours();
+
+if (hours > 0 && hours <= 12){
+
+document.getElementById("greeting").innerHTML = "Good Morning!";
+
+document.getElementById("greeting").style.color = "lawngreen";
+
+}else if (hours > 12 && hours <= 17){
+
+document.getElementById("greeting").innerHTML = "Good Afternoon";
+
+document.getElementById("greeting").style.color = "yellow";
+
+}else if (hours > 17 && hours <= 0){
+
+document.getElementById("greeting").innerHTML = "Good Evening";
+
+document.getElementById("greeting").style.color = "blue";
+
+}
+
+</script>
+
+</body>
+
+</html>
